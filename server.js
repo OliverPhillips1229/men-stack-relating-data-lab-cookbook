@@ -22,6 +22,9 @@ const passUserToView = require('./middleware/pass-user-to-view.js');  // Makes u
 // Set server port - use environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : '3000';
 
+// new code below this line ---
+const path = require('path');
+
 // Connect to MongoDB database using connection string from environment variables
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -40,6 +43,10 @@ app.use(methodOverride('_method'));
 
 // HTTP request logging
 app.use(morgan('dev'));
+
+// new code below this line ---
+app.use(express.static(path.join(__dirname, 'public')));
+// new code above this line ---
 
 // Session configuration for user authentication
 app.use(

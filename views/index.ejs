@@ -3,10 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/style.css" />
   <title>Pantry App - Home</title>
 </head>
 <body>
   <%- include('./partials/_navbar.ejs') %>
-  <h1>Welcome to CookBook</h1>
+  <main>
+    <h1>Welcome to CookBook</h1>
+    <p>Organize your pantry and discover community recipes!</p>
+    
+    <% if (!user) { %>
+      <div>
+        <h2>Get Started</h2>
+        <a href="/auth/sign-up">Sign Up</a> | 
+        <a href="/auth/sign-in">Sign In</a>
+      </div>
+    <% } else { %>
+      <div>
+        <h2>Your Dashboard</h2>
+        <p>Welcome back, <%= user.username %>!</p>
+        <a href="/users/<%=user._id%>/foods">View my Pantry</a> | 
+        <a href="/users">Explore Our Community</a>
+      </div>
+    <% } %>
+  </main>
 </body>
 </html>
