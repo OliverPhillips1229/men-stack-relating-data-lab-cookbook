@@ -13,6 +13,7 @@ const session = require('express-session');    // Session management for user au
 // Import route controllers to handle different sections of the app
 const authController = require('./controllers/auth.js');   // Handles sign-up, sign-in, sign-out
 const foodsController = require('./controllers/foods.js'); // Handles pantry CRUD operations
+const usersController = require('./controllers/users.js'); // Handles community/user listing
 
 // Import custom middleware functions
 const isSignedIn = require('./middleware/is-signed-in.js');           // Protects routes requiring authentication
@@ -63,6 +64,7 @@ app.use(passUserToView);                    // Makes user data available in ALL 
 app.use('/auth', authController);           // Authentication routes (sign-up/in/out) - no login required
 app.use(isSignedIn);                       // From this point on, ALL routes require authentication
 app.use('/users/:userId/foods', foodsController); // Pantry management routes - login required
+app.use('/users', usersController);         // Community/user listing routes - login required
 
 // Start the server and listen for incoming requests
 app.listen(port, () => {

@@ -7,6 +7,7 @@
   <% if(user) { %>
     <!-- Links for authenticated users -->
     <a href="/users/<%=user._id%>/foods">View my Pantry</a>
+    <a href="/users">Explore Our Community</a>
     <a href="/auth/sign-out">Sign Out</a>
   <% } else { %>
     <!-- Links for guest users (not logged in) -->
